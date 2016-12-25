@@ -3,26 +3,39 @@ var express = require('express');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var cors = require('cors');
 
-// list the endpoints which you want to make securable here
-var securableEndpoints;
-securableEndpoints = ['/hello'];
+var rhmapAuth = require("./lib/util/rhmapAuth");
+var configurationMeetRequirements = require("./lib/util/checkRequirements");
 
 var app = express();
 
 // Enable CORS for all requests
 app.use(cors());
 
-// Note: the order which we add middleware to Express here is important!
-app.use('/sys', mbaasExpress.sys(securableEndpoints));
+app.engine('html', require('ejs').renderFile);
+
+// Uncomment to enable platform authentication
+// if(!process.env.FH_USE_LOCAL_DB){
+//   app.use(rhmapAuth);
+// }
+
 app.use('/mbaas', mbaasExpress.mbaas);
 
 // allow serving of static files from the public directory
-app.use(express.static(__dirname + '/public'));
+app.use("static", express.static(__dirname + '/public'));
 
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-app.use('/hello', require('./lib/hello.js')());
+// app.use(function checkRequirements(req, res, next) {
+//   if(configurationMeetRequirements()){
+//     return next();
+//   }
+//   return res.render('upgrade.ejs', {});
+// });
+
+// if(configurationMeetRequirements()) {
+   app.use("/", require("./lib/routes/fileRoute"));
+// }
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
