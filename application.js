@@ -11,7 +11,7 @@ var app = express();
 // Enable CORS for all requests
 app.use(cors());
 
-app.engine('html', require('ejs').renderFile);
+app.engine('ejs', require('ejs').__express);
 
 // Uncomment to enable platform authentication
 // if(!process.env.FH_USE_LOCAL_DB){
