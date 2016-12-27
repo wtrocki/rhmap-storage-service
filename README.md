@@ -9,11 +9,11 @@ Store and retrieve your files without hassle using mongodb gridfs storage engine
 - Easy to backup using existing mongo backup solutions
 - Easy to monitor storage and provide alerts
 
-![](http://images.memes.com/meme/310748)
+![](./images/meme.png)
 
 ## Web interface
 
-![](./screenshots/mainview.png)
+![](./images/mainview.png)
 
 ## API
 
