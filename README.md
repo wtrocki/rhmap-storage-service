@@ -37,7 +37,31 @@ Execute grunt
 
 > POST /api/files/
 
-Upload file using formdata. File input should be named `file` 
+Upload file using multipart form-data body.
+
+### Form body parts:
+    
+> file 
+
+Represents binary file that would be uploaded.
+For example `<input type="file" name="file"/>`
+    
+> redirectOnSuccess
+
+If added instead of returning json results backend would redirect to path provided as value.
+For example: `<input type="hidden" name="redirectOnSuccess" value="/"/>`
+    
+
+Example body:
+```
+------WebKitFormBoundaryKKdzzkCch9eo2hG0
+Content-Disposition: form-data; name="file"; filename="yourfile.txt"
+Content-Type: text/html
+
+------WebKitFormBoundaryKKdzzkCch9eo2hG0
+Content-Disposition: form-data; name="redirectOnSuccess"
+/
+```
 
 > GET /api/files/:filename
 
