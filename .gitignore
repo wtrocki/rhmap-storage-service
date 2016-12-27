@@ -31,7 +31,6 @@ fh-log
 *.iml
 *.swp
 integration-test.sh
-public/css/styles.css
 bower_components/
 ## See copy in grunt
 public/lib/
