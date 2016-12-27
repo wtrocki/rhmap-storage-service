@@ -11,7 +11,8 @@ var app = express();
 app.use(cors());
 app.engine('ejs', require('ejs').__express);
 
-// Uncomment to enable basic platform authentication
+// Uncomment to enable platform authentication
+// var rhmapAuth = require("./lib/util/rhmapAuth");
 // if(!process.env.FH_USE_LOCAL_DB){
 //   app.use(rhmapAuth);
 // }
