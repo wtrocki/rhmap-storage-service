@@ -35,11 +35,12 @@ Execute grunt
 
 ## API
 
+### Upload files 
 > POST /api/files/
 
 Upload file using multipart form-data body.
 
-### Form body parts:
+#### Form body:
     
 > file 
 
@@ -56,27 +57,32 @@ Example body:
 ```
 ------WebKitFormBoundaryKKdzzkCch9eo2hG0
 Content-Disposition: form-data; name="file"; filename="yourfile.txt"
-Content-Type: text/html
+Content-Type: text/plain
 
 ------WebKitFormBoundaryKKdzzkCch9eo2hG0
 Content-Disposition: form-data; name="redirectOnSuccess"
 /
 ```
 
+### Retrieve files 
 > GET /api/files/:filename
 
-Stream uploaded file
+Stream uploaded file. Returns file octet stream 
+
+### Delete file from database
 
 > DELETE /api/files/:filename
 
-Delete uploaded file (file id can be used as well)
+Delete uploaded file by `filename`. Object id can be also specified as filename.
 
 ## Why using mongodb as storage solution
 
-- When using mongo data and files are stored in one place (simplicity)
-- Easy to scale using mongo mechanisms
-- Easy to backup using existing mongo backup solutions
+- When using mongo data and files are stored in one place
+- Ability to replicate files using mongo mechanisms
+- Many backup options using existing mongo backup solutions. Files and data are stored in the same database
+- Possiblity to stream data
 - Easy to monitor storage and provide alerts
+- Possible to manage and query file metadata without effort
 
 ![](./images/meme.png)
 
