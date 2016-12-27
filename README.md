@@ -3,7 +3,7 @@
 Store and retrieve your files without hassle using mongodb gridfs storage engine.
 Storage service was designed to run on RHMAP, but it can be easly adapted to run on docker and other servers with node.js and npm installed. 
 
-# Goal
+##  Goal
 
 - Provide abstraction for data storage
 - Allow to store and retrieve any file using simple API
@@ -85,8 +85,8 @@ Delete uploaded file by `filename`. Object id can be also specified as filename.
 
 - When using mongo data and files are stored in one place
 - Ability to replicate files using mongo mechanisms
-- Seamless way to backup data using existing mongo backup solutions. Files and data are stored in the same database
-- Possiblity to stream data
+- Seamless way to backup data using existing mongo backup solutions
+- Possibility to stream data
 - Easy to monitor storage and provide alerts
 - Possible to manage and query file metadata without effort
 
