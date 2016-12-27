@@ -33,5 +33,5 @@ fh-log
 integration-test.sh
 bower_components/
 ## See copy in grunt
-public/lib/
+## public/lib/
 uploads
