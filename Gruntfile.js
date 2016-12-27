@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         }
       },
       html: {
-        files: ['public/views/**', 'app/views/**'],
+        files: [],
         options: {
           livereload: true
         }
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         script: 'application.js',
         options: {
           args: [],
-          ignore: ['public/**'],
+          ignore: ['node_modules/**/*','public/**'],
           ext: 'js,html',
           nodeArgs: [],
           delayTime: 1,
@@ -137,6 +137,49 @@ module.exports = function(grunt) {
         jshintrc: true
       }
     },
+    browserify : {
+      client : {
+        src : 'public/js/app.js',
+        dest : 'public/js/app-built.js',
+        options : {
+          watch : true
+        }
+      }
+    },
+     copy: {
+      main: {
+        files:[
+          {
+            cwd : 'node_modules/font-awesome',
+            expand: true,
+            flatten: false,
+            src: '{less,fonts}/**',
+            dest: 'public/lib/font-awesome/'
+          },
+          {
+            cwd : 'node_modules/bootstrap',
+            expand: true,
+            flatten: false,
+            src: '{js,less,fonts}/**',
+            dest: 'public/lib/bootstrap/'
+          },
+          {
+            cwd : 'node_modules/patternfly',
+            expand: true,
+            flatten: false,
+            src: '{less,components,fonts,dist}/**',
+            dest: 'public/lib/patternfly/'
+          },
+          {
+            cwd : 'node_modules/brace',
+            expand: true,
+            flatten: false,
+            src: '**/*',
+            dest: 'public/lib/brace/'
+          }
+        ]
+      }
+    }
   });
 
   // Load NPM tasks
@@ -144,6 +187,9 @@ module.exports = function(grunt) {
     scope: 'devDependencies'
   });
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+ 
 
   // Testing tasks
   grunt.registerTask('test', ['jshint', 'shell:unit', 'shell:accept']);
@@ -155,10 +201,10 @@ module.exports = function(grunt) {
   grunt.registerTask('coverage-unit', ['shell:coverage_unit']);
   grunt.registerTask('coverage-accept', ['env:local', 'shell:coverage_accept']);
 
-
   grunt.registerTask('analysis', ['plato:src', 'open:platoReport']);
 
-  grunt.registerTask('serve', ['env:local', 'concurrent:serve']);
+  //grunt.registerTask('serve', ['env:local', 'concurrent:serve']);
+  grunt.registerTask('serve', ['env:local', 'copy', 'browserify:client', 'nodemon']);
   grunt.registerTask('debug', ['env:local', 'concurrent:debug']);
   grunt.registerTask('default', ['serve']);
 };

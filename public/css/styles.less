@@ -1,0 +1,83 @@
+@import "../lib/patternfly/less/patternfly.less";
+@import "../lib/font-awesome/less/font-awesome.less";
+@icon-font-path: "/lib/bootstrap/fonts/";
+@font-path: "/lib/patternfly/dist/fonts";
+@fa-font-path: "/lib/font-awesome/fonts";
+
+table.table{
+  thead {
+    background: none;
+  }
+  tr {
+    cursor: pointer;
+    .btn-group {
+      margin: 4px auto;
+    }
+  }
+}
+
+.fh-file-input{
+  background: white; // rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.2);
+  display: inline-block;
+  margin: 20px 0;
+  padding: 5px;
+  width: 75%;
+  select{
+    border:none;
+    background:none;
+    box-shadow: none;
+  }
+  input[type="text"]{
+    background: none;
+    border: none;
+    border-left: 1px solid rgba(0,0,0,0.3);
+    box-shadow: none;
+    width: 85%;
+  }
+}
+
+.fh-file-actions{
+  display: block;
+  width: 50%;
+  margin:0 auto;
+  input, button{
+    padding: 13px 0px 12px 0px;
+    width: 38%;
+    margin: 1%;
+  }
+}
+
+.fh-file-nav{
+  margin-bottom: 20px;
+}
+
+.mountPath{
+  input{
+    width: 95%!important;
+  }
+}
+
+.loader {
+  display: none;
+}
+
+.file-pending .loader {
+  display: block;
+}
+
+.fh-result .fh-response {
+  display: none;
+}
+
+.file-done .fh-result .fh-response {
+  display: block;
+}
+
+.alert {
+  position: fixed;
+}
+
+.alert-error {
+  .alert-danger;
+}
