@@ -51,15 +51,19 @@ Upload file using multipart form-data body.
 > file 
 
 Represents binary file that would be uploaded.
-For example `<input type="file" name="file"/>`
+Example html form element:  
+
+`<input type="file" name="file"/>`
     
 > redirectOnSuccess
 
 If added instead of returning json results backend would redirect to path provided as value.
-For example: `<input type="hidden" name="redirectOnSuccess" value="/"/>`
+Example html form element: 
+
+    `<input type="hidden" name="redirectOnSuccess" value="/"/>`
     
 
-Example body:
+Example body containing both parameters:
 ```
 ------WebKitFormBoundaryKKdzzkCch9eo2hG0
 Content-Disposition: form-data; name="file"; filename="yourfile.txt"
