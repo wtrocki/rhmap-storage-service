@@ -11,11 +11,17 @@ var app = express();
 app.use(cors());
 app.engine('ejs', require('ejs').__express);
 
-// Uncomment to enable platform authentication
-// var rhmapAuth = require("./lib/util/rhmapAuth");
-// if(!process.env.FH_USE_LOCAL_DB){
-//   app.use(rhmapAuth);
-// }
+/* uncomment this code if you want to use $fh.auth in the app preview
+ * localAuth is only used for local development. 
+ * If the app is deployed on the platform, 
+ * this function will be ignored and the request will be forwarded 
+ * to the platform to perform authentication.
+app.use('/box', mbaasExpress.auth({localAuth: function(req, cb){
+  return cb(null, {status:401, body: {"message": "bad request"}});
+}}));
+or
+app.use('/box', mbaasExpress.core({localAuth: {status:401, body: {"message": "not authorised”}}}));
+*/
 
 app.use('/mbaas', mbaasExpress.mbaas);
 app.use(lessMiddleware(__dirname + '/public'));
